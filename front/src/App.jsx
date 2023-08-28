@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Detalles from "./components/Detalles.jsx";
 import Nav from "./components/Nav.jsx";
@@ -6,10 +6,15 @@ import Form from "./components/Form.jsx";
 import Lista from "./components/Lista.jsx";
 import "./App.css";
 import ListaFiltros from "./components/ListaFiltros.jsx";
+import { useDispatch } from "react-redux";
+import { getAlumnos } from "./redux/actions.js";
 
 function App() {
   // const [alumnos, setAlumnos] = useState([...personas]);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAlumnos());
+  }, [])
   return (
     <>
       <Nav />

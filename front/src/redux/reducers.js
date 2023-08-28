@@ -7,20 +7,20 @@ import {
   ORDEN,
   RESET,
 } from "./types";
-import arrAlumnos from "../alumnos.json";
 
 const initialState = {
-  alumnos: arrAlumnos.map((a, i) => (a = { ...a, id: i })),
-  alumnosFiltrados: arrAlumnos.map((a, i) => (a = { ...a, id: i })),
+  alumnos: [],
+  alumnosFiltrados: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case GET_ALUMNOS:
-    //   return {
-    //     ...state,
-    //     alumnos: arrAlumnos.map((a, i) => (a = { ...a, id: i })),
-    //   };
+    case GET_ALUMNOS:
+      return {
+        ...state,
+        alumnos: action.payload.map((e,i) => (e = {...e, id: i})),
+        alumnosFiltrados: action.payload.map((e,i) => (e = {...e, id: i})),
+      };
     case ADD_ALUMNO:
       return {
         ...state,

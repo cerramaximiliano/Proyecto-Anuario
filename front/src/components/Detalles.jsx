@@ -28,6 +28,19 @@ function Detalles({ alumnos }) {
 
   useEffect(() => {
     if (id < 0 || id > alumnos.length - 1) navigate("/error");
+    else {
+      (async function() {
+
+        try {
+          const  data  = await axios.get(`http://localhost:3001/detalle/${id}`)
+          if (data) setAlumno(data)
+        }catch (err){
+          console.log(err)
+        }
+      })
+
+    }
+    
     return () => setAlumno({});
   }, []);
 

@@ -7,11 +7,17 @@ import {
   ORDEN,
   RESET,
 } from "./types";
+import axios from 'axios';
 
 export function getAlumnos() {
-  return {
-    type: GET_ALUMNOS,
-  };
+  return async function (dispatch){
+    try {
+      const {data} = await axios.get('http://localhost:3001/alumnos')
+      if(data) dispatch({type: GET_ALUMNOS, payload: data})
+    }catch(err){
+      console.log(err)
+    }
+  }
 }
 
 export function addAlumno(nuevoAlumno) {
