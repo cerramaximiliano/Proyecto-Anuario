@@ -1,7 +1,22 @@
 const express = require('express');
 const server = express();
 const PORT = 3000;
+const routes = require('./routes');
+const cors = require('cors');
+const router = express.Router();
 
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+router.use(express.json());
+server.use(cors(corsOptions));
+server.use('/', function (req, res, next) {
+    console.log('Hicieron una Request a ', req.url);
+    next();
+} );
+server.use('/', routes);
 server.listen(PORT, () => {
     console.log(`Server on PORT ${PORT}`);
 
